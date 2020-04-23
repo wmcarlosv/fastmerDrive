@@ -1,0 +1,62 @@
+<ion-header no-border>
+  <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/login"></ion-back-button>
+          <ion-label>Recuperar contraseña</ion-label>
+      </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-item>
+        <ion-img src="https://www.robsa.com.py/fastmer/assets/correo.png"></ion-img>
+    </ion-item>
+  </ion-list>
+
+  <form (ngSubmit)="registro( fRegistro )" #fRegistro="ngForm">
+    <ion-row>
+        <ion-col>
+            <ion-list>
+
+                <ion-item class="Fields">
+                        <ion-label position="floating" color="default">Ingrese su correo</ion-label>
+                        <ion-input type="text" name='email' [(ngModel)]="registerUser.email" required pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"></ion-input>
+                    </ion-item>
+            </ion-list>
+
+
+        </ion-col>
+
+    </ion-row>
+
+
+
+    <div class="ion-activatable ripple-parent">
+      <ion-button class="ion-activatable ripple-parent" color="primary" expand='full' type="submit" [disabled]='fRegistro.invalid' >
+        Recuperar
+    </ion-button>
+      <ion-ripple-effect></ion-ripple-effect>
+    </div>
+    
+</form>
+<!--<ion-progress-bar value="0.25" buffer="0.5"></ion-progress-bar> -->
+</ion-content>
+
+
+<!-- Footer without a border -->
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>Fastmer Technologies </ion-title>
+  </ion-toolbar>
+</ion-footer>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>Politica de Privacidad - Terminos y Condiciones</ion-title>
+  </ion-toolbar>
+</ion-footer>
+

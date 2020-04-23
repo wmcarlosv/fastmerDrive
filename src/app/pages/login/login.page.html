@@ -1,0 +1,59 @@
+<ion-content [ngStyle]="{'background':'url('+ loginPic +')'}">
+    <ion-grid style="height: 100%">
+      <ion-row class="ion-justify-content-center"  style="height: 100%; flex-direction: column">
+        <ion-list class="ion-text-center">
+  
+  
+          <img [src]="logo" class="circle-pic"/>
+
+
+        <!-- <ion-slides class="container" pager="true" #slidePrincipal>
+            <ion-slide class="width:auto;"> -->
+
+<ion-card>
+    <ion-card-header class="ion-text-center">
+
+        <form (ngSubmit)="login( fLogin )" #fLogin="ngForm">
+            <ion-item no-padding class="animated fadeInUp">
+                <ion-label  style="color:black">
+                    <ion-icon name="mail" item-start></ion-icon>
+                </ion-label>
+                <ion-input  style="color:black;" required pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" name="email" type="email" [(ngModel)]="loginUser.email" required></ion-input>
+            </ion-item>
+            <ion-item no-padding class="animated fadeInUp">
+                <ion-label style="color: black">
+                    <ion-icon name="key" item-start></ion-icon>
+                </ion-label>
+                <ion-input style="color: black;" name="password" type="password" [(ngModel)]="loginUser.password" required></ion-input>
+            </ion-item>
+
+
+            <ion-button  color="danger" expand="block" type="submit" [disabled]='fLogin.invalid'>iniciar sesión </ion-button>
+        </form>
+         
+
+            
+            <ion-row class=" ion-text-center">
+                <ion-col>
+                <ion-label style="color: black;font-size:8px;"><p style="font-size:10px;" (click)="mostrarRegistro()">¿Todavia no tenes cuenta? <u style="color: red;">Registrarse!</u></p></ion-label>
+                </ion-col>
+                <ion-col>
+                    <ion-label>
+                <p style="font-size:10px;" (click)="mostrarPass()">Olvidaste tu contraseña ? <u style="color: red;">Recuperar!</u></p>
+                    </ion-label>
+                </ion-col>
+              </ion-row>
+</ion-card-header>
+
+</ion-card>       
+
+    </ion-list>
+</ion-row>
+
+
+
+
+</ion-grid>
+
+
+</ion-content>

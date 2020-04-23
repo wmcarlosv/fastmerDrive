@@ -1,0 +1,55 @@
+
+<ion-content fullscreen>
+
+
+
+    <ion-toolbar translucent>
+      <ion-title>FASTMER drive</ion-title>
+      <ion-buttons slot="end">
+          <ion-button (click)="logout()"
+                      color="danger">
+                      Cerrar Sesión
+            <ion-icon slot="icon-only" name="exit"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+        <ion-fab-button >Iniciar</ion-fab-button>
+      </ion-fab>
+    
+
+  <div class="map-wrapper">
+    
+    <ion-fab horizontal="end" vertical="top" slot="fixed" edge>
+      <ion-fab-button size="small" translucent="true">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-list>
+        <ion-fab-button color="light">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button color="light">
+          <ion-icon name="logo-twitter"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button color="light">
+          <ion-icon name="logo-vimeo"></ion-icon>
+        </ion-fab-button>
+      </ion-fab-list>
+    </ion-fab>
+    <div id="map_center">
+      <img src="../../../assets/img/aqui_estoy.png" />
+    </div>
+    <div #map id="map"></div>
+      
+    </div>
+  <div id="address">{{address}}
+  </div>
+
+ 
+</ion-content>
+
+<ion-toolbar color="primary">
+  <ion-progress-bar type="indeterminate"></ion-progress-bar>
+  <ion-progress-bar type="indeterminate" reversed="true"></ion-progress-bar>
+  <ion-title>Cuenta pendiente de aprobación...</ion-title>
+  </ion-toolbar>

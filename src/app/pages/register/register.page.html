@@ -1,0 +1,353 @@
+<!-- <ion-header no-border>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/login"></ion-back-button>
+            <ion-label>Es hora de crear nuestra cuenta</ion-label>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header> -->
+
+
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/login"></ion-back-button>
+            <ion-label>Es hora de crear nuestra cuenta</ion-label>
+        </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+
+<ion-content>
+    <form (ngSubmit)="registro( fRegistro )" #fRegistro="ngForm">
+        <ion-row>
+            <ion-col>
+
+                <ion-list lines="full" class="ion-no-margin ion-no-padding">
+                    <div *ngIf="hideA">
+
+                    <ion-item class="Fields">
+
+                        <ion-label position="stacked">Nombre Completo <ion-text color="danger">*</ion-text></ion-label>
+                        <ion-input required type="text" name='nombre' [(ngModel)]="registerUser.nombre"></ion-input>
+                    </ion-item>
+
+                    <ion-item class="Fields">
+
+                        <ion-label position="stacked">Direccion <ion-text color="danger">*</ion-text></ion-label>
+                        <ion-input required type="text" name='direccion' [(ngModel)]="registerUser.direccion"></ion-input>
+
+                    </ion-item>
+
+                    <ion-item class="Fields">
+
+                        <ion-label position="stacked">Numero de Celular <ion-text color="danger">*</ion-text></ion-label>
+                        <ion-input required type="text" name='telefonoMovil' [(ngModel)]="registerUser.telefonoMovil"></ion-input>
+
+                    </ion-item>
+
+
+                    <ion-item>
+                           <!-- <ion-label>Tipo de documento</ion-label> -->
+                            <ion-label position="stacked">Tipo de Documento <ion-text color="danger">*</ion-text></ion-label>
+                            <ion-select required interface="popover" [(ngModel)]="registerUser.tipo_documento" name='tipo_documento' placeholder="Seleccione una de las opciones">
+                              <ion-select-option value="0">Cedula de Identidad</ion-select-option>
+                              <ion-select-option value="1">Pasaporte</ion-select-option>
+                            </ion-select>
+                   </ion-item>
+
+                   <ion-item class="Fields">
+
+                        <ion-label position="stacked">Numero de Documento <ion-text color="danger">*</ion-text></ion-label>
+                        <ion-input required type="text" name='celular' pattern="[0-9]*" [(ngModel)]="registerUser.num_documento"></ion-input>
+
+                    </ion-item>    
+                    
+                  
+                <ion-item class="Fields">
+                    <ion-label position="stacked">Sexo <ion-text color="danger">*</ion-text></ion-label>
+                    <ion-select required interface="popover" [(ngModel)]="registerUser.sexo" name='sexo' placeholder="Seleccione una de las opciones"> 
+                      <ion-select-option value="M">Masculino</ion-select-option>
+                      <ion-select-option value="F">Femenino</ion-select-option>
+                    </ion-select>
+                </ion-item>
+                    
+               
+                    <ion-item class="Fields">
+
+                            <ion-label position="stacked">Correo Electronico <ion-text color="danger">*</ion-text></ion-label>
+                            <ion-input required type="text" name='email' pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" [(ngModel)]="registerUser.email"></ion-input>
+
+                        </ion-item>
+
+                    <ion-item class="Fields">
+
+                        <ion-label position="stacked">Ingrese Clave <ion-text color="danger">*</ion-text></ion-label>
+                        <ion-input required type="password" name='clave' [(ngModel)]="registerUser.clave"></ion-input>
+
+                    </ion-item>
+
+
+                    <ion-button expand='full' (click)="fhideT()" [disabled]='fRegistro.invalid' >
+                        Siguiente Paso
+                    </ion-button>
+
+
+                </div>
+
+                <div *ngIf="hideT">
+                    <ion-item class="Fields">
+                        <ion-label position="stacked">Tipo Vehiculo <ion-text color="danger">*</ion-text></ion-label>
+                        <ion-select (ionChange)="fhideB(); filtrarVehiculo()" interface="popover" [(ngModel)]="registerUser.tipoVehiculo" name='tipoVehiculo' placeholder="Seleccione una de las opciones"> 
+                        <ion-select-option value="1">Bicicleta</ion-select-option>
+                        <ion-select-option value="2">Motocicleta</ion-select-option>
+                        <ion-select-option value="3">Automovil</ion-select-option>
+                        <ion-select-option disabled="true" value="4">Fletero</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+
+                    <ion-button color="light" expand='full' (click)="fhideA()" [disabled]='fRegistro.invalid' >
+                        Paso Anterior
+                    </ion-button>
+
+                </div>
+
+                    <div *ngIf="hideB">
+
+
+                    <ion-item>
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col *ngIf="r1">
+                                    <div>
+                                        <img [src]="registerUser.foto" *ngIf="registerUser.foto" />
+                                    </div>
+                                </ion-col>
+                                
+                                <ion-col *ngIf="r2">
+                                    <div>
+                                        <img [src]="registerUser.foto2" *ngIf="registerUser.foto2" />
+                                    </div>
+                                </ion-col>
+                                <ion-col *ngIf="r3">
+                                    <div>
+                                        <img [src]="registerUser.foto3" *ngIf="registerUser.foto3" />
+                                    </div>
+                                </ion-col>
+                                <ion-col *ngIf="r4">
+                                    <div>
+                                        <img [src]="registerUser.foto4" *ngIf="registerUser.foto4" />
+                                    </div>
+                                </ion-col>
+                                <ion-col *ngIf="r5">
+                                    <div>
+                                        <img [src]="registerUser.foto5" *ngIf="(registerUser.foto5) " />
+                                    </div>
+                                </ion-col>
+                                <ion-col *ngIf="r6">
+                                <div>
+                                        <img [src]="registerUser.foto6" *ngIf="registerUser.foto6" />
+                                </div>
+                               </ion-col>
+                                
+                            </ion-row>
+                        </ion-grid>
+                    </ion-item>
+
+                    <ion-list>
+                        <ion-label style="text-align:center;color: black; font-weight: bold;">Datos del repartidor</ion-label>
+                        <hr>
+
+                        <div *ngIf="r1">
+                            <ion-row>
+                                <ion-col>
+                                    <ion-label class="Fields2" position="floating" color="default">Foto de perfil</ion-label>
+                                    <ion-icon *ngIf="df1" color="success" name="checkmark"></ion-icon>
+                                </ion-col>
+                                <ion-col>
+                                    <ion-button fill="outline" expand="block" (click)="sacarFoto()" [disabled]="!isEnabled">
+                                        <ion-icon name="person"></ion-icon>
+                                    </ion-button>
+                                </ion-col>
+                            </ion-row>
+                        </div>
+                    <div *ngIf="r2">
+
+                        <ion-row>
+                                <ion-col>
+                                    <ion-label color="light" class="Fields2" position="floating" color="default">Documento de identidad(Frontal)</ion-label>
+                                    <ion-icon *ngIf="df2" color="success" name="checkmark"></ion-icon>
+                                </ion-col>
+                                <ion-col>
+                                    <ion-button fill="outline" expand="block" expand="block" (click)="sacarFoto2()" [disabled]="!isEnabled2">
+                                        <ion-icon src="../../../assets/img/documento.svg"></ion-icon>
+                                    </ion-button>
+                                </ion-col>
+                            </ion-row>    
+               </div>             
+                        <div *ngIf="r3">
+                            <ion-row>
+                                    <ion-col>
+                                        <ion-label class="Fields2" position="floating" color="default">Documento de identidad(Reverso)</ion-label>
+                                        <ion-icon *ngIf="df3" color="success" name="checkmark"></ion-icon>
+                                    </ion-col>
+                                    <ion-col>
+                                        <ion-button fill="outline" expand="block" (click)="sacarFoto3()" [disabled]="!isEnabled3">
+                                            <ion-icon src="../../../assets/img/documento.svg"></ion-icon>
+
+                                        </ion-button>
+                                    </ion-col>
+                                </ion-row>    
+                            </div>
+
+                    <div *ngIf="r4">
+
+                        <ion-row class="top-20">
+                            <ion-col>
+                                <ion-label class="Fields2" position="floating" color="default">Licencia de conducir(Frontal)</ion-label>
+                                <ion-icon *ngIf="df4" color="success" name="checkmark"></ion-icon>
+                            </ion-col>
+                            <ion-col>
+                                <ion-button fill="outline" expand="block" (click)="sacarFoto4()" [disabled]="!isEnabled4">
+                                    <ion-icon src="../../../assets/img/licencia.svg"></ion-icon>
+                                </ion-button>
+                            </ion-col>
+                        </ion-row>
+                    </div>
+
+                    <div *ngIf="r5">
+
+                        <ion-row class="top-20">
+                            <ion-col>
+                                <ion-label class="Fields2" position="floating" color="default">Licencia de conducir(Reverso)</ion-label>
+                                <ion-icon *ngIf="df5" color="success" name="checkmark"></ion-icon>
+                            </ion-col>
+                            <ion-col>
+                                <ion-button fill="outline" expand="block" (click)="sacarFoto5()" [disabled]="!isEnabled5">
+                                    <ion-icon name="card"></ion-icon>
+                                </ion-button>
+                            </ion-col>
+                        </ion-row>
+</div>
+
+                    <div *ngIf="r6">
+
+                        <ion-row class="top-20">
+                                <ion-col>
+                                    <ion-label class="Fields2" position="floating" color="default">Antecedentes Judiciales/Policiales</ion-label>
+                                    <ion-icon *ngIf="df6" color="success" name="checkmark"></ion-icon>
+                                </ion-col>
+                                <ion-col>
+                                    <ion-button fill="outline" expand="block" (click)="sacarFoto6()" [disabled]="!isEnabled6">
+                                        <ion-icon name="document"></ion-icon>
+                                    </ion-button>
+                                </ion-col>
+                            </ion-row>
+                            </div>
+                    </ion-list>
+
+                    <div *ngIf="T1">
+                        <ion-button expand='full' (click)="fhideC()" [disabled]='fRegistro.invalid' >
+                            Siguiente y Ultimo Paso
+                        </ion-button>
+                    </div>
+                    <div *ngIf="T2">
+                        
+
+                        
+                        <ion-button expand='full' type="submit" [disabled]='fRegistro.invalid'>
+                            Crear usuario
+                        </ion-button>
+
+
+                    </div>
+
+                    <ion-button color="light" expand='full' (click)="fhideT()" [disabled]='fRegistro.invalid' >
+                        Paso Anterior
+                    </ion-button>
+                    <p style="font-size:10px;" (click)="terminosCondiciones()">Al registrarme, acepto los  <u style="color: red;">terminos y condiciones</u></p>
+
+                    </div>
+
+                    <div *ngIf="hideC">
+
+                        <ion-item>
+                            <ion-grid>
+                                <ion-row>
+
+                                    <ion-col>
+                                    <div>              
+                                            <img [src]="registerUser.foto7" *ngIf="registerUser.foto7" />
+                                    </div> 
+                                  </ion-col>
+                                    <ion-col>
+                                    <div>
+                                            <img [src]="registerUser.foto8" *ngIf="registerUser.foto8" />
+                                    </div>
+                                  </ion-col>
+    
+                                    
+                                </ion-row>
+                            </ion-grid>
+                        </ion-item>
+
+
+
+                    <ion-list>
+                        <div *ngIf="T1">
+
+                        <ion-label style="color: black; font-weight: bold;">Datos del vehiculo</ion-label>
+                        <br>
+                        <br>
+                        <div *ngIf="r7">
+                        <ion-row class="top-20">
+                            <ion-col>
+                                <ion-label class="Fields2" position="floating" color="default">Habilitacion(Frontal)</ion-label>
+                                <ion-icon *ngIf="df7" color="success" name="checkmark"></ion-icon>
+                            </ion-col>
+                            <ion-col>
+                                <ion-button fill="outline" expand="block" (click)="sacarFoto7()" [disabled]="!isEnabled7">
+                                    <ion-icon src="../../../assets/img/licencia.svg"></ion-icon>
+                                </ion-button>
+                            </ion-col>
+                        </ion-row>
+                        </div>
+                        <div *ngIf="r8">
+
+                        <ion-row class="top-20">
+                            <ion-col>
+                                <ion-label class="Fields2" position="floating" color="default">Habilitacion(reverso)</ion-label>
+                                <ion-icon *ngIf="df8" color="success" name="checkmark"></ion-icon>
+                            </ion-col>
+                            <ion-col>
+                                <ion-button fill="outline" expand="block" (click)="sacarFoto8()" [disabled]="!isEnabled8">
+                                    <ion-icon name="card"></ion-icon>
+                                </ion-button>
+                            </ion-col>
+                        </ion-row>
+                        </div>
+                        </div>
+
+                        <ion-button expand='full' type="submit" [disabled]='fRegistro.invalid'>
+                            Crear usuario
+                        </ion-button>
+
+                        <ion-button color="light" expand='full' (click)="fhideB()" [disabled]='fRegistro.invalid' >
+                            Paso Anterior
+                        </ion-button>
+
+                        <p style="font-size:10px;" (click)="terminosCondiciones()">Al registrarme, acepto los  <u style="color: red;">terminos y condiciones</u></p>
+
+                    </ion-list>
+
+                    </div>
+                </ion-list>
+
+            </ion-col>
+
+        </ion-row>
+
+  
+    </form>
+
+</ion-content>
